@@ -18,16 +18,14 @@ const MultipleCounter = () => {
         changeValueArr(value,index)
     }
     const handleReset = () => {
-        const newValueArr = [...valueArr].fill(0)
-        if( size < newValueArr.length){
-            let diff =  newValueArr.length - size
-            newValueArr.splice(size,diff)
-        } else {
-            let diff =  size - newValueArr.length
-            newValueArr.push(...Array(diff).fill(0))
+        const newValueArr = Array(Math.max(size, valueArr.length)).fill(0);
+        if(size !== valueArr.length){
+            if (size < valueArr.length) {
+                newValueArr.length = size;
+            }
+            setValueArr(newValueArr);
+            setTotal(0);
         }
-        setValueArr(newValueArr);
-        setTotal(0)
     };
 
     const changeValueArr = (value,index) => {
