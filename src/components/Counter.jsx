@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 const Counter = ( props ) => {
     const [count, setCount] = useState(0);
+    const reset = props.reset;
 
     const increment = () => {
         const newCount = count + 1;
@@ -12,6 +13,12 @@ const Counter = ( props ) => {
         const newCount = count - 1;
         setCount(newCount);
     };
+
+    React.useEffect(() => {
+        if (reset) {
+            setCount(0);
+        }
+    }, [reset]);
 
     return (
         <div className="counter">

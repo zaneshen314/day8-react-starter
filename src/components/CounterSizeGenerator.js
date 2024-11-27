@@ -16,6 +16,7 @@ const CounterSizeGenerator = () => {
         if (size !== counterSize) {
             setCounterSize(size);
             setReset(true);
+            setTimeout(() => setReset(false), 100);
         }
     };
 
