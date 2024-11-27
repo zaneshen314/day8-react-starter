@@ -20,7 +20,8 @@ const CounterGroup = (props) => {
         setCountersState(updatedCounters);
     };
 
-
+    // 计算所有计数器的总和
+    const total = countersState.reduce((sum, count) => sum + count, 0);
 
     for (let i = 0; i < size; i++) {
         counters.push(
@@ -30,6 +31,9 @@ const CounterGroup = (props) => {
 
     return (
         <div className="counter-group">
+            <div className="total">
+                <h4>Total Sum: {total}</h4>
+            </div>
             {counters}
         </div>
     );
