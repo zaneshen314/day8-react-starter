@@ -1,10 +1,10 @@
 import './App.css';
-import CounterSizeGenerator from "./components/CounterSizeGenerator";
+import MultipleCounter from "./components/MultipleCounter";
 
 function App() {
   return (
     <div className="App">
-    <CounterSizeGenerator />
+    <MultipleCounter />
     </div>
   );
 }

@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
 import CounterGroup from './CounterGroup';
+import CounterSizeGenerator from './CounterSizeGenerator';
 
-const CounterSizeGenerator = () => {
-    const [valueArr,setValueArr] = useState([]) // 子组件的所有值
+const MultipleCounter = () => {
+    const [valueArr,setValueArr] = useState([])
     const [total,setTotal] = useState(0)
     const [size, setSize] = useState(0);
 
@@ -26,7 +27,7 @@ const CounterSizeGenerator = () => {
             newValueArr.push(...Array(diff).fill(0))
         }
         setValueArr(newValueArr);
-        setTotal(0);
+        setTotal(0)
     };
 
     const changeValueArr = (value,index) => {
@@ -37,18 +38,7 @@ const CounterSizeGenerator = () => {
 
     return (
         <div className="container">
-            <div className="input-container">
-                <font>Size:</font>
-                <input
-                    type="number"
-                    value={size}
-                    onChange={handleSizeChange}
-                    placeholder="Enter Size"
-                    min="0"
-                />
-                <button className="reset-button" onClick={handleReset}>Reset</button>
-            </div>
-
+            <CounterSizeGenerator size={size} handleSizeChange={handleSizeChange} handleReset={handleReset}/>
             <div className="counter-list">
                 {valueArr.length > 0 && <CounterGroup valueArr={valueArr} total={total} changeTotal={changeTotal} changeValueArr={changeValueArr} />}
             </div>
@@ -56,4 +46,4 @@ const CounterSizeGenerator = () => {
     );
 };
 
-export default CounterSizeGenerator;
+export default MultipleCounter;
