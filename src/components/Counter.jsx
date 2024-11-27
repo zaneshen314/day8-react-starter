@@ -1,20 +1,25 @@
 import React, { useState } from 'react';
 
-const Counter = (props) => {
-    const [status,setStatus]  = useState(0);
-    const increment  = () => {
-        setStatus(status+1);
+const Counter = ( props ) => {
+    const [count, setCount] = useState(0);
+
+    const increment = () => {
+        const newCount = count + 1;
+        setCount(newCount);
     };
-    const decrement  = () => {
-        setStatus(status-1)
-    }
+
+    const decrement = () => {
+        const newCount = count - 1;
+        setCount(newCount);
+    };
+
     return (
         <div className="counter">
-            <button className='button' onClick={increment}>-</button>
-            <span>{status}</span>
-            <button className='button' onClick={decrement}>-</button>
+            <button className="button" onClick={decrement}>-</button>
+            <span className="count">{count}</span>
+            <button className="button" onClick={increment}>+</button>
         </div>
     );
 };
 
-export default Counter
+export default Counter;
