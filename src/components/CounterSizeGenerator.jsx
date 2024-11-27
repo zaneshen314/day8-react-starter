@@ -26,6 +26,7 @@ const CounterSizeGenerator = () => {
             newValueArr.push(...Array(diff).fill(0))
         }
         setValueArr(newValueArr);
+        setTotal(0);
     };
 
     const changeValueArr = (value,index) => {
