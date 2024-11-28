@@ -1,40 +1,44 @@
-import React, {useState} from 'react';
-import CounterGroup from './CounterGroup';
+import React, { useState } from 'react';
 import CounterSizeGenerator from './CounterSizeGenerator';
+import CounterGroup from './CounterGroup';
 
 const MultipleCounter = () => {
-    const [valueArr,setValueArr] = useState([])
-    const [total,setTotal] = useState(0)
-    const [size, setSize] = useState(0);
+    const [valueArr, setValueArr] = useState([]);
+    const [total, setTotal] = useState(0);
 
-    const handleSizeChange = (event) => {
-        if (event.target.value >= 0 && event.target.value <= 20) {
-            setSize(event.target.value);
-        }
-    };
-    const changeTotal = (value, index)=>{
-        const diff = value - valueArr[index]
-        setTotal(total+diff)
-        changeValueArr(value,index)
-    }
-    const handleReset = () => {
-        if(Number(size) !== valueArr.length){
-            setValueArr(Array(Number(size)).fill(0));
+    const handleSizeChange = (newSize) => {
+        if (newSize !== valueArr.length) {
+            setValueArr(Array(newSize).fill(0));
             setTotal(0);
         }
     };
 
-    const changeValueArr = (value,index) => {
+    const changeTotal = (value, index) => {
+        const diff = value - valueArr[index];
+        setTotal(total + diff);
+        changeValueArr(value, index);
+    };
+
+    const changeValueArr = (value, index) => {
         const newArr = [...valueArr];
-        newArr[index] = value
-        setValueArr(newArr)
-    }
+        newArr[index] = value;
+        setValueArr(newArr);
+    };
 
     return (
         <div className="container">
-            <CounterSizeGenerator size={size} handleSizeChange={handleSizeChange} handleReset={handleReset}/>
+            <CounterSizeGenerator handleSizeChange={handleSizeChange} />
             <div className="counter-list">
-                {valueArr.length > 0 && <CounterGroup valueArr={valueArr} total={total} changeTotal={changeTotal} changeValueArr={changeValueArr} />}
+                <div className="total">
+                    <h4>Total Sum: {total}</h4>
+                </div>
+                {valueArr.length > 0 && (
+                    <CounterGroup
+                        valueArr={valueArr}
+                        changeTotal={changeTotal}
+                        changeValueArr={changeValueArr}
+                    />
+                )}
             </div>
         </div>
     );

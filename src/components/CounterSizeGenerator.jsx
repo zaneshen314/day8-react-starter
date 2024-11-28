@@ -1,18 +1,29 @@
-import React from 'react';
-const CounterSizeGenerator =({size,handleSizeChange,handleReset})=>{
-    return(
-        <div className="input-container">
+
+import React, { useState } from 'react';
+
+const CounterSizeGenerator = ({ handleSizeChange }) => {
+    const [size, setSize] = useState(0);
+
+    const handleSizeInputChange = (event) => {
+        const newSize = parseInt(event.target.value);
+        if (newSize >= 0 && newSize <= 20) {
+            setSize(newSize);
+        }
+    };
+
+    return (
+        <div className="size-generator">
             <font>Size:</font>
             <input
                 type="number"
                 value={size}
-                onChange={handleSizeChange}
-                placeholder="Enter Size"
+                onChange={handleSizeInputChange}
                 min="0"
+                max="20"
             />
-            <button className="reset-button" onClick={handleReset}>Reset</button>
+            <button onClick={() => handleSizeChange(size)}>Reset</button>
         </div>
-    )
-}
+    );
+};
 
-export default CounterSizeGenerator
+export default CounterSizeGenerator;
