@@ -18,7 +18,7 @@ const MultipleCounter = () => {
         changeValueArr(value,index)
     }
     const handleReset = () => {
-        if(size !== valueArr.length){
+        if(Number(size) !== valueArr.length){
             setValueArr(Array(Number(size)).fill(0));
             setTotal(0);
         }
